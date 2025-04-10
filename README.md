@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Memet Group - Site Web Professionnel
 
-## Getting Started
+Site web d'une seule page pour Memet Group, une entreprise spécialisée dans la rénovation, l'aménagement de magasins, la plomberie et les services généraux.
 
-First, run the development server:
+## Technologies utilisées
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js 14
+- React
+- TypeScript
+- Tailwind CSS
+
+## Caractéristiques
+
+- Design responsive pour mobile, tablette et desktop
+- Animations et transitions fluides
+- Formulaire de contact avec validation
+- Optimisé pour le SEO
+- Chargement rapide des pages
+
+## Sections du site
+
+1. Hero - Introduction et appel à l'action
+2. À propos - Histoire et mission de l'entreprise
+3. Services - Présentation des services offerts
+4. Pourquoi nous choisir - Avantages de travailler avec Memet Group
+5. Témoignages - Avis de clients satisfaits
+6. Contact - Formulaire de contact et informations de contact
+
+## Comment utiliser
+
+### Prérequis
+
+- Node.js (v18+)
+- npm ou yarn
+
+### Installation
+
+1. Clonez ce dépôt
+```
+git clone https://github.com/votre-utilisateur/memetgroup.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Installez les dépendances
+```
+cd memetgroup
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Démarrez le serveur de développement
+```
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur
 
-## Learn More
+### Construction pour la production
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Images
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Avant de déployer le site en production, remplacez les images d'espace réservé par des images réelles. Voir le script `scripts/generate-placeholder-images.js` pour la liste des images nécessaires.
 
-## Deploy on Vercel
+## Personnalisation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Modifiez les couleurs dans `tailwind.config.js`
+- Mettez à jour les textes dans les composants correspondants
+- Remplacez les images dans le dossier `public/images`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contact
+
+Pour toute question ou demande de devis, visitez [memetgroup.pl](https://memetgroup.pl) ou envoyez un email à [contact@memetgroup.pl](mailto:contact@memetgroup.pl).
+
+## Licence
+
+© 2023-2024 Memet Group. Tous droits réservés.
