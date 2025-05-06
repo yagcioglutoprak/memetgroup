@@ -35,7 +35,7 @@ const testimonials = [
 
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const slideContainerRef = useRef(null);
+  const slideContainerRef = useRef<HTMLDivElement>(null);
   
   const handleNext = () => {
     setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
