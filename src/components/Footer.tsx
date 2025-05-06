@@ -22,7 +22,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-600 mb-6">
-              Des solutions professionnelles de rénovation, d'aménagement et de maintenance pour vos espaces commerciaux et résidentiels.
+              Professional renovation, layout, and maintenance solutions for your commercial and residential spaces.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-gray-600 hover:text-primary transition-colors">
@@ -45,11 +45,11 @@ export default function Footer() {
           
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-4 text-gray-800">Liens Rapides</h4>
+            <h4 className="text-lg font-bold mb-4 text-gray-800">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="#à-propos" className="text-gray-600 hover:text-primary transition-colors">
-                  À Propos
+                <Link href="#about" className="text-gray-600 hover:text-primary transition-colors">
+                  About
                 </Link>
               </li>
               <li>
@@ -58,13 +58,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#pourquoi-nous" className="text-gray-600 hover:text-primary transition-colors">
-                  Pourquoi Nous Choisir
+                <Link href="#why-us" className="text-gray-600 hover:text-primary transition-colors">
+                  Why Choose Us
                 </Link>
               </li>
               <li>
-                <Link href="#témoignages" className="text-gray-600 hover:text-primary transition-colors">
-                  Témoignages
+                <Link href="#testimonials" className="text-gray-600 hover:text-primary transition-colors">
+                  Testimonials
                 </Link>
               </li>
               <li>
@@ -77,31 +77,31 @@ export default function Footer() {
           
           {/* Services */}
           <div>
-            <h4 className="text-lg font-bold mb-4 text-gray-800">Nos Services</h4>
+            <h4 className="text-lg font-bold mb-4 text-gray-800">Our Services</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Rénovation
+                  Renovation
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Aménagement de Magasins
+                  Store Layout
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Plomberie
+                  Plumbing
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Services Généraux
+                  General Services
                 </Link>
               </li>
               <li>
                 <Link href="#contact" className="text-gray-600 hover:text-primary transition-colors">
-                  Devis Gratuit
+                  Free Quote
                 </Link>
               </li>
             </ul>
@@ -116,7 +116,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                 </svg>
-                <span className="text-gray-600">ul. Przykładowa 123, 00-001 Varsovie, Pologne</span>
+                <span className="text-gray-600">ul. Przykładowa 123, 00-001 Warsaw, Poland</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary mt-0.5">
@@ -136,7 +136,7 @@ export default function Footer() {
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary mt-0.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
-                <span className="text-gray-600">Lun - Ven: 8h00 - 18h00</span>
+                <span className="text-gray-600">Mon - Fri: 8:00 AM - 6:00 PM</span>
               </li>
             </ul>
           </div>
@@ -147,17 +147,17 @@ export default function Footer() {
       <div className="border-t border-gray-200">
         <div className="container py-6 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-600 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} Memet Group. Tous droits réservés.
+            &copy; {currentYear} Memet Group. All rights reserved.
           </div>
           <div className="flex gap-6">
             <Link href="#" className="text-gray-600 text-sm hover:text-primary transition-colors">
-              Conditions d'utilisation
+              Terms of Use
             </Link>
             <Link href="#" className="text-gray-600 text-sm hover:text-primary transition-colors">
-              Politique de confidentialité
+              Privacy Policy
             </Link>
             <Link href="#" className="text-gray-600 text-sm hover:text-primary transition-colors">
-              Mentions légales
+              Legal Notice
             </Link>
           </div>
         </div>

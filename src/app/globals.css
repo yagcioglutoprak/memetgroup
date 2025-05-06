@@ -12,6 +12,8 @@
   --border-radius-full: 9999px;
 }
 
+
+
 @layer base {
   html {
     scroll-behavior: smooth;

@@ -10,8 +10,8 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
       </svg>
     ),
-    title: 'Adresse',
-    content: 'ul. Przykładowa 123, 00-001 Varsovie, Pologne'
+    title: 'Address',
+    content: 'ul. Przykładowa 123, 00-001 Warsaw, Poland'
   },
   {
     icon: (
@@ -19,7 +19,7 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
       </svg>
     ),
-    title: 'Téléphone',
+    title: 'Phone',
     content: '+48 123 456 789'
   },
   {
@@ -37,8 +37,8 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     ),
-    title: 'Heures d\'ouverture',
-    content: 'Lundi - Vendredi: 8h00 - 18h00'
+    title: 'Opening Hours',
+    content: 'Monday - Friday: 8:00 AM - 6:00 PM'
   }
 ];
 
@@ -66,7 +66,7 @@ export default function Contact() {
     e.preventDefault();
     setFormStatus({ isSubmitting: true, isSubmitted: false, isError: false });
     
-    // Simulation d'un envoi de formulaire
+    // Form submission simulation
     setTimeout(() => {
       setFormStatus({ isSubmitting: false, isSubmitted: true, isError: false });
       setFormData({
@@ -82,14 +82,14 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-[#141a2b] text-gray-300">
       <div className="container">
-        <h2 className="text-3xl font-bold text-center mb-12 text-white">Contactez <span className="text-primary">Nous</span></h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-white">Contact <span className="text-primary">Us</span></h2>
         
         <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-gray-400">Nous sommes à votre service</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-400">We are at your service</h3>
             <p className="text-gray-300 mb-6 text-sm">
-              Besoin d'un devis pour votre projet de rénovation ou d'aménagement? Une question sur nos services? Contactez-nous.
+              Need a quote for your renovation or layout project? A question about our services? Contact us.
             </p>
             
             <div className="space-y-5 mb-8">
@@ -105,7 +105,7 @@ export default function Contact() {
             </div>
             
             <div>
-              <h4 className="font-medium text-sm mb-3 text-gray-400">Suivez-nous</h4>
+              <h4 className="font-medium text-sm mb-3 text-gray-400">Follow us</h4>
               <div className="flex gap-3">
                 <a href="#" className="w-8 h-8 rounded-md bg-[#1f263a] text-white flex items-center justify-center hover:bg-primary transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
@@ -128,18 +128,18 @@ export default function Contact() {
           
           {/* Contact Form */}
           <div className="bg-white text-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-5">Envoyez-nous un message</h3>
+            <h3 className="text-lg font-semibold mb-5">Send us a message</h3>
             
             {formStatus.isSubmitted ? (
               <div className="bg-green-50 text-green-700 p-4 rounded-md mb-4">
-                <h4 className="font-medium mb-1">Message envoyé avec succès!</h4>
-                <p className="text-sm">Nous vous répondrons dans les meilleurs délais.</p>
+                <h4 className="font-medium mb-1">Message sent successfully!</h4>
+                <p className="text-sm">We will respond as soon as possible.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-gray-700">Nom complet *</label>
+                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-gray-700">Full name *</label>
                     <input
                       type="text"
                       id="name"
@@ -147,7 +147,7 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="Votre nom"
+                      placeholder="Your name"
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                     />
                   </div>
@@ -161,20 +161,20 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="Votre adresse email"
+                      placeholder="Your email address"
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-gray-700">Téléphone</label>
+                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-gray-700">Phone</label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Votre numéro de téléphone"
+                      placeholder="Your phone number"
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                     />
                   </div>
@@ -189,17 +189,17 @@ export default function Contact() {
                       required
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900"
                     >
-                      <option value="" className="text-gray-400">Sélectionnez un service</option>
-                      <option value="renovation">Rénovation</option>
-                      <option value="shopfitting">Aménagement de magasins</option>
-                      <option value="plumbing">Plomberie</option>
-                      <option value="handyman">Services généraux</option>
+                      <option value="" className="text-gray-400">Select a service</option>
+                      <option value="renovation">Renovation</option>
+                      <option value="shopfitting">Store Layout</option>
+                      <option value="plumbing">Plumbing</option>
+                      <option value="handyman">General Services</option>
                     </select>
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-1 text-gray-700">Votre message *</label>
+                  <label htmlFor="message" className="block text-sm font-medium mb-1 text-gray-700">Your message *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -207,7 +207,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    placeholder="Décrivez votre besoin ici..."
+                    placeholder="Describe your needs here..."
                     className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                   ></textarea>
                 </div>
@@ -217,11 +217,11 @@ export default function Contact() {
                   disabled={formStatus.isSubmitting}
                   className="w-full py-2.5 px-4 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
-                  {formStatus.isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
+                  {formStatus.isSubmitting ? 'Sending...' : 'Send'}
                 </button>
                 
                 <p className="text-xs text-gray-500">
-                  * Champs obligatoires. En soumettant ce formulaire, vous acceptez notre politique de confidentialité.
+                  * Required fields. By submitting this form, you agree to our privacy policy.
                 </p>
               </form>
             )}

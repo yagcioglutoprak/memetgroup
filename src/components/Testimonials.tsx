@@ -6,29 +6,29 @@ const testimonials = [
   {
     id: 1,
     name: "Marie Dubois",
-    role: "Propriétaire de boutique",
-    content: "L'équipe de Memet Group a complètement transformé mon espace commercial. La qualité de leur travail est exceptionnelle et l'attention aux détails remarquable. Je recommande vivement leurs services pour tout projet de rénovation commerciale.",
+    role: "Shop Owner",
+    content: "The Memet Group team completely transformed my commercial space. The quality of their work is exceptional and the attention to detail remarkable. I highly recommend their services for any commercial renovation project.",
     rating: 5
   },
   {
     id: 2,
     name: "Thomas Laurent",
-    role: "Directeur de restaurant",
-    content: "Professionnalisme et efficacité sont les mots qui définissent Memet Group. Ils ont rénové notre restaurant tout en respectant notre planning serré et notre budget. Le résultat a dépassé nos attentes.",
+    role: "Restaurant Manager",
+    content: "Professionalism and efficiency are the words that define Memet Group. They renovated our restaurant while respecting our tight schedule and budget. The result exceeded our expectations.",
     rating: 5
   },
   {
     id: 3,
     name: "Sophie Martin",
-    role: "Gérante d'hôtel",
-    content: "Nous avons fait appel à Memet Group pour la rénovation de notre hall d'accueil et de plusieurs chambres. Leur réactivité et leur expertise technique ont été déterminantes dans la réussite de ce projet.",
+    role: "Hotel Manager",
+    content: "We called on Memet Group for the renovation of our reception hall and several rooms. Their responsiveness and technical expertise were decisive in the success of this project.",
     rating: 4
   },
   {
     id: 4,
     name: "Jean Moreau",
-    role: "Propriétaire d'immeuble",
-    content: "Les services de plomberie de Memet Group sont d'une qualité irréprochable. Intervention rapide, diagnostic précis et solutions durables. Je les sollicite désormais pour tous mes biens immobiliers.",
+    role: "Building Owner",
+    content: "Memet Group's plumbing services are of impeccable quality. Fast intervention, accurate diagnosis and sustainable solutions. I now call on them for all my properties.",
     rating: 5
   }
 ];
@@ -61,9 +61,9 @@ export default function Testimonials() {
   }, []);
   
   return (
-    <section id="témoignages" className="section bg-gray-50">
+    <section id="testimonials" className="section bg-gray-50">
       <div className="container">
-        <h2 className="section-title">Ce que disent <span className="text-primary">Nos Clients</span></h2>
+        <h2 className="section-title">What <span className="text-primary">Our Clients</span> Say</h2>
         
         <div className="relative mt-12">
           <div className="overflow-hidden">
@@ -119,7 +119,7 @@ export default function Testimonials() {
           <button 
             onClick={handlePrev}
             className="absolute top-1/2 left-0 -translate-y-1/2 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md text-primary border border-gray-200 z-10 hover:bg-primary hover:text-white transition-colors"
-            aria-label="Témoignage précédent"
+            aria-label="Previous testimonial"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -129,7 +129,7 @@ export default function Testimonials() {
           <button 
             onClick={handleNext}
             className="absolute top-1/2 right-0 -translate-y-1/2 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md text-primary border border-gray-200 z-10 hover:bg-primary hover:text-white transition-colors"
-            aria-label="Témoignage suivant"
+            aria-label="Next testimonial"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -146,7 +146,7 @@ export default function Testimonials() {
               className={`w-3 h-3 rounded-full transition-all ${
                 activeIndex === index ? 'bg-primary w-6' : 'bg-gray-300'
               }`}
-              aria-label={`Voir témoignage ${index + 1}`}
+              aria-label={`View testimonial ${index + 1}`}
             />
           ))}
         </div>
