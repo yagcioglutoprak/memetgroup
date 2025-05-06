@@ -104,7 +104,7 @@ export default function Testimonials() {
                       </div>
                     </div>
                     
-                    <p className="mb-6 text-gray-700 italic">"{testimonial.content}"</p>
+                    <p className="mb-6 text-gray-700 italic">&quot;{testimonial.content}&quot;</p>
                     
                     <div className="flex justify-end">
                       <div className="w-24 h-1 bg-primary rounded-full"></div>
