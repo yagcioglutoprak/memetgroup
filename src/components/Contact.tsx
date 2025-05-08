@@ -11,7 +11,7 @@ const contactInfo = [
       </svg>
     ),
     title: 'Address',
-    content: 'ul. Przykładowa 123, 00-001 Warsaw, Poland'
+    content: 'ul. Księcia Józefa Poniatowskiego 24/1A, 50-326 Wroclaw, Poland'
   },
   {
     icon: (
@@ -20,7 +20,7 @@ const contactInfo = [
       </svg>
     ),
     title: 'Phone',
-    content: '+48 123 456 789'
+    content: '+48 608 514 215'
   },
   {
     icon: (
@@ -38,7 +38,7 @@ const contactInfo = [
       </svg>
     ),
     title: 'Opening Hours',
-    content: 'Monday - Friday: 8:00 AM - 6:00 PM'
+    content: 'Monday - Friday: 06:00 - 18:00'
   }
 ];
 
