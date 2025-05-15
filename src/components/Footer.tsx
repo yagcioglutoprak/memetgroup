@@ -1,9 +1,22 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/context/LanguageContext';
 
 const currentYear = new Date().getFullYear();
 
 export default function Footer() {
+  const { t } = useLanguage();
+  
+  const navItems = [
+    { key: 'nav.about', href: '#about' },
+    { key: 'nav.services', href: '#services' },
+    { key: 'nav.whyUs', href: '#why-us' },
+    { key: 'nav.testimonials', href: '#testimonials' },
+    { key: 'nav.contact', href: '#contact' }
+  ];
+  
   return (
     <footer className="bg-white text-gray-800">
       {/* Main Footer */}
@@ -14,7 +27,7 @@ export default function Footer() {
             <div className="mb-4">
               <div className="relative h-24 w-24">
                 <Image 
-                  src="/icons/memet kebab black bcg rgb.svg"
+                  src="/icons/pn"
                   alt="Memet Group Logo"
                   fill
                   className="object-contain"
@@ -22,7 +35,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-gray-600 mb-6">
-              Professional renovation, layout, and maintenance solutions for your commercial and residential spaces.
+              {t('footer.description')}
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-gray-600 hover:text-primary transition-colors">
@@ -47,31 +60,13 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold mb-4 text-gray-800">Quick Links</h4>
             <ul className="space-y-2">
-              <li>
-                <Link href="#about" className="text-gray-600 hover:text-primary transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="#why-us" className="text-gray-600 hover:text-primary transition-colors">
-                  Why Choose Us
-                </Link>
-              </li>
-              <li>
-                <Link href="#testimonials" className="text-gray-600 hover:text-primary transition-colors">
-                  Testimonials
-                </Link>
-              </li>
-              <li>
-                <Link href="#contact" className="text-gray-600 hover:text-primary transition-colors">
-                  Contact
-                </Link>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.key}>
+                  <Link href={item.href} className="text-gray-600 hover:text-primary transition-colors">
+                    {t(item.key)}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           
@@ -101,7 +96,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#contact" className="text-gray-600 hover:text-primary transition-colors">
-                  Free Quote
+                  {t('cta.freeQuote')}
                 </Link>
               </li>
             </ul>
@@ -109,7 +104,7 @@ export default function Footer() {
           
           {/* Contact */}
           <div>
-            <h4 className="text-lg font-bold mb-4 text-gray-800">Contact</h4>
+            <h4 className="text-lg font-bold mb-4 text-gray-800">{t('nav.contact')}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-primary mt-0.5">
@@ -147,17 +142,17 @@ export default function Footer() {
       <div className="border-t border-gray-200">
         <div className="container py-6 flex flex-col md:flex-row justify-between items-center">
           <div className="text-gray-600 text-sm mb-4 md:mb-0">
-            &copy; {currentYear} Memet Group. All rights reserved.
+            &copy; {currentYear} Memet Group. {t('footer.copyright')}
           </div>
           <div className="flex gap-6">
             <Link href="#" className="text-gray-600 text-sm hover:text-primary transition-colors">
-              Terms of Use
+              {t('footer.terms')}
             </Link>
             <Link href="#" className="text-gray-600 text-sm hover:text-primary transition-colors">
-              Privacy Policy
+              {t('footer.privacy')}
             </Link>
             <Link href="#" className="text-gray-600 text-sm hover:text-primary transition-colors">
-              Legal Notice
+              {t('footer.legal')}
             </Link>
           </div>
         </div>
