@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const testimonials = [
   {
@@ -34,6 +35,7 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const slideContainerRef = useRef<HTMLDivElement>(null);
   
@@ -63,7 +65,9 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="section bg-gray-50">
       <div className="container">
-        <h2 className="section-title">What <span className="text-primary">Our Clients</span> Say</h2>
+        <h2 className="section-title">{t('testimonials.title').toString().split(' ').map((word, index) => 
+          index < 2 ? <span key={index}>{word} </span> : <span key={index} className="text-primary">{word} {index < word.length - 1 ? ' ' : ''}</span>
+        )}</h2>
         
         <div className="relative mt-12">
           <div className="overflow-hidden">

@@ -11,7 +11,7 @@ export default function About() {
     <section id="about" className="py-20 bg-gray-50">
       <div className="container">
         <h2 className="text-3xl font-bold text-center mb-12">
-          {t('about.title').split('Memet Group').map((part, index) => 
+          {(t('about.title') as string).split('Memet Group').map((part, index) => 
             index === 0 ? 
               <span key={index}>{part}</span> : 
               <Fragment key={`fragment-${index}`}>
@@ -52,8 +52,8 @@ export default function About() {
                   </svg>
                 </div>
                 <div>
-                  <h4 className="font-medium">Expert Team</h4>
-                  <p className="text-sm text-gray-600">Skilled professionals with years of experience</p>
+                  <h4 className="font-medium">{t('about.expertTeam')}</h4>
+                  <p className="text-sm text-gray-600">{t('about.expertTeamDesc')}</p>
                 </div>
               </div>
               

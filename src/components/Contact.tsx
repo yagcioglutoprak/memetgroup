@@ -1,6 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+import { useLanguage } from '@/context/LanguageContext';
 
 const contactInfo = [
   {
@@ -10,7 +12,7 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
       </svg>
     ),
-    title: 'Address',
+    titleKey: 'contact.address',
     content: 'ul. Księcia Józefa Poniatowskiego 24/1A, 50-326 Wroclaw, Poland'
   },
   {
@@ -19,7 +21,7 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
       </svg>
     ),
-    title: 'Phone',
+    titleKey: 'contact.phone',
     content: '+48 608 514 215'
   },
   {
@@ -28,7 +30,7 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
       </svg>
     ),
-    title: 'Email',
+    titleKey: 'contact.email',
     content: 'contact@memetgroup.pl'
   },
   {
@@ -37,12 +39,14 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     ),
-    title: 'Opening Hours',
-    content: 'Monday - Friday: 06:00 - 18:00'
+    titleKey: 'contact.hours',
+    contentKey: 'contact.hoursValue'
   }
 ];
 
 export default function Contact() {
+  const { t } = useLanguage();
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -65,31 +69,41 @@ export default function Contact() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus({ isSubmitting: true, isSubmitted: false, isError: false });
-    
-    // Form submission simulation
-    setTimeout(() => {
-      setFormStatus({ isSubmitting: false, isSubmitted: true, isError: false });
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
-      });
-    }, 1500);
+
+    if (form.current) {
+      emailjs.sendForm('service_i2ws1ib', 'template_qfj35dq', form.current, 'IBO46TZZ1SuPTlnwx')
+        .then(() => {
+          setFormStatus({ isSubmitting: false, isSubmitted: true, isError: false });
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            service: '',
+            message: ''
+          });
+        }, (error) => {
+          console.error('FAILED...', error);
+          setFormStatus({ isSubmitting: false, isSubmitted: false, isError: true });
+        });
+    } else {
+      console.error("Form reference is not set.");
+      setFormStatus({ isSubmitting: false, isSubmitted: false, isError: true });
+    }
   };
   
   return (
     <section id="contact" className="py-20 bg-[#141a2b] text-gray-300">
       <div className="container">
-        <h2 className="text-3xl font-bold text-center mb-12 text-white">Contact <span className="text-primary">Us</span></h2>
+        <h2 className="text-3xl font-bold text-center mb-12 text-white">{t('contact.title').toString().split(' ').map((word, index) => 
+          index === 0 ? <span key={index}>{word} </span> : <span key={index} className="text-primary">{word}</span>
+        )}</h2>
         
         <div className="grid md:grid-cols-2 gap-10">
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-4 text-gray-400">We are at your service</h3>
+            <h3 className="text-xl font-semibold mb-4 text-gray-400">{t('contact.subtitle')}</h3>
             <p className="text-gray-300 mb-6 text-sm">
-              Need a quote for your renovation or layout project? A question about our services? Contact us.
+              {t('contact.description')}
             </p>
             
             <div className="space-y-5 mb-8">
@@ -97,15 +111,15 @@ export default function Contact() {
                 <div key={index} className="flex items-start gap-3">
                   <div className="text-primary mt-0.5 bg-[#1f263a] p-2 rounded-md">{info.icon}</div>
                   <div>
-                    <h4 className="font-medium text-sm text-gray-400">{info.title}</h4>
-                    <p className="text-gray-300 text-sm">{info.content}</p>
+                    <h4 className="font-medium text-sm text-gray-400">{t(info.titleKey)}</h4>
+                    <p className="text-gray-300 text-sm">{info.contentKey ? t(info.contentKey) : info.content}</p>
                   </div>
                 </div>
               ))}
             </div>
             
             <div>
-              <h4 className="font-medium text-sm mb-3 text-gray-400">Follow us</h4>
+              <h4 className="font-medium text-sm mb-3 text-gray-400">{t('contact.followUs')}</h4>
               <div className="flex gap-3">
                 <a href="#" className="w-8 h-8 rounded-md bg-[#1f263a] text-white flex items-center justify-center hover:bg-primary transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
@@ -128,18 +142,23 @@ export default function Contact() {
           
           {/* Contact Form */}
           <div className="bg-white text-gray-800 p-6 rounded-lg shadow-md">
-            <h3 className="text-lg font-semibold mb-5">Send us a message</h3>
+            <h3 className="text-lg font-semibold mb-5">{t('contact.form.title')}</h3>
             
             {formStatus.isSubmitted ? (
               <div className="bg-green-50 text-green-700 p-4 rounded-md mb-4">
-                <h4 className="font-medium mb-1">Message sent successfully!</h4>
-                <p className="text-sm">We will respond as soon as possible.</p>
+                <h4 className="font-medium mb-1">{t('contact.form.success')}</h4>
+                <p className="text-sm">{t('contact.form.successDesc')}</p>
+              </div>
+            ) : formStatus.isError ? (
+              <div className="bg-red-50 text-red-700 p-4 rounded-md mb-4">
+                <h4 className="font-medium mb-1">{t('contact.form.error')}</h4>
+                <p className="text-sm">{t('contact.form.errorDesc')}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-gray-700">Full name *</label>
+                    <label htmlFor="name" className="block text-sm font-medium mb-1 text-gray-700">{t('contact.form.name')} *</label>
                     <input
                       type="text"
                       id="name"
@@ -147,13 +166,13 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="Your name"
+                      placeholder={t('contact.form.namePlaceholder').toString()}
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-1 text-gray-700">Email *</label>
+                    <label htmlFor="email" className="block text-sm font-medium mb-1 text-gray-700">{t('contact.form.email')} *</label>
                     <input
                       type="email"
                       id="email"
@@ -161,26 +180,26 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      placeholder="Your email address"
+                      placeholder={t('contact.form.emailPlaceholder').toString()}
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-gray-700">Phone</label>
+                    <label htmlFor="phone" className="block text-sm font-medium mb-1 text-gray-700">{t('contact.form.phone')}</label>
                     <input
                       type="tel"
                       id="phone"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Your phone number"
+                      placeholder={t('contact.form.phonePlaceholder').toString()}
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="service" className="block text-sm font-medium mb-1 text-gray-700">Service *</label>
+                    <label htmlFor="service" className="block text-sm font-medium mb-1 text-gray-700">{t('contact.form.service')} *</label>
                     <select
                       id="service"
                       name="service"
@@ -189,17 +208,17 @@ export default function Contact() {
                       required
                       className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900"
                     >
-                      <option value="" className="text-gray-400">Select a service</option>
-                      <option value="renovation">Renovation</option>
-                      <option value="shopfitting">Store Layout</option>
-                      <option value="plumbing">Plumbing</option>
-                      <option value="handyman">General Services</option>
+                      <option value="" className="text-gray-400">{t('contact.form.servicePlaceholder')}</option>
+                      <option value="renovation">{t('contact.form.serviceRenovation')}</option>
+                      <option value="shopfitting">{t('contact.form.serviceShopfitting')}</option>
+                      <option value="plumbing">{t('contact.form.servicePlumbing')}</option>
+                      <option value="handyman">{t('contact.form.serviceGeneral')}</option>
                     </select>
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-1 text-gray-700">Your message *</label>
+                  <label htmlFor="message" className="block text-sm font-medium mb-1 text-gray-700">{t('contact.form.message')} *</label>
                   <textarea
                     id="message"
                     name="message"
@@ -207,7 +226,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={4}
-                    placeholder="Describe your needs here..."
+                    placeholder={t('contact.form.messagePlaceholder').toString()}
                     className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-primary text-gray-900 placeholder-gray-400"
                   ></textarea>
                 </div>
@@ -217,11 +236,11 @@ export default function Contact() {
                   disabled={formStatus.isSubmitting}
                   className="w-full py-2.5 px-4 bg-primary text-white font-semibold rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
-                  {formStatus.isSubmitting ? 'Sending...' : 'Send'}
+                  {formStatus.isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
                 </button>
                 
                 <p className="text-xs text-gray-500">
-                  * Required fields. By submitting this form, you agree to our privacy policy.
+                  {t('contact.form.required')}
                 </p>
               </form>
             )}

@@ -25,9 +25,9 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <div className="relative h-24 w-24">
+              <div className="relative h-36 w-36">
                 <Image 
-                  src="/icons/pn"
+                  src="/icons/icon2.svg"
                   alt="Memet Group Logo"
                   fill
                   className="object-contain"
@@ -58,7 +58,7 @@ export default function Footer() {
           
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold mb-4 text-gray-800">Quick Links</h4>
+            <h4 className="text-lg font-bold mb-4 text-gray-800">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
               {navItems.map((item) => (
                 <li key={item.key}>
@@ -72,26 +72,26 @@ export default function Footer() {
           
           {/* Services */}
           <div>
-            <h4 className="text-lg font-bold mb-4 text-gray-800">Our Services</h4>
+            <h4 className="text-lg font-bold mb-4 text-gray-800">{t('footer.ourServices')}</h4>
             <ul className="space-y-2">
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Renovation
+                  {t('footer.serviceRenovation')}
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Store Layout
+                  {t('footer.serviceLayout')}
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  Plumbing
+                  {t('footer.servicePlumbing')}
                 </Link>
               </li>
               <li>
                 <Link href="#services" className="text-gray-600 hover:text-primary transition-colors">
-                  General Services
+                  {t('footer.serviceGeneral')}
                 </Link>
               </li>
               <li>
